@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">ProjectTestWebmaps</string>
+
+    <string name="user">Usuario: </string>
+    <string name="password">Contraseña: </string>
+    <string name="email">Correo electrónico</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="login_forgot_password">Olvidé mi contraseña</string>
+    <string name="login_create_account">Crear cuenta</string>
+    <string name="recover_password">Recuperar contraseña</string>
+    <string name="reset_password">Restablecer contraseña</string>
+    <string name="go_login">Regresar al inicio de sesión</string>
+    <string name="login_sign_up">Registrarse</string>
+    <string name="login_you_sign_up">Regístrate</string>
+    <string name="login_sign_up_password">Contraseña</string>
+    <string name="login_sign_up_password_confirm">Confirmar contraseña</string>
+
+    <string name="welcome_to_webmaps">Hola, te damos la Bienvenida a WebMaps</string>
+    <string name="create_db">Crear Base de datos</string>
+
 </resources>
