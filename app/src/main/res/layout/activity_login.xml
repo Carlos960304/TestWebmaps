@@ -48,7 +48,7 @@
         <EditText
             android:id="@+id/etPassword"
             android:inputType="textPassword"
-            android:maxLength="10"
+            android:maxLength="15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

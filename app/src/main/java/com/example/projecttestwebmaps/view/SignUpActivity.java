@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.projecttestwebmaps.MainActivity;
 import com.example.projecttestwebmaps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,12 +50,12 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
-            final String email = etEmail.getText().toString().trim();
-            final String password = etPassword.getText().toString().trim();
-            final String confirmPassword = etConfirmPassword.getText().toString().trim();
             @Override
             public void onClick(View v) {
-                if(isValidEmailAndPassword(email, password)) {
+                final String email = etEmail.getText().toString().trim();
+                final String password = etPassword.getText().toString().trim();
+                final String confirmPassword = etConfirmPassword.getText().toString().trim();
+                if(isValidEmailAndPassword(email, password, confirmPassword)) {
                     if(isValidEmail(email) && isValidPassword(password) && isValidConfirmPassword(password, confirmPassword)) {
                         signUpByEmail(email, password);
                     }
@@ -70,6 +71,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Creación del usuario exitosa", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Creación del usuario fallida", Toast.LENGTH_SHORT).show();
@@ -78,8 +82,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private Boolean isValidEmailAndPassword(String email, String password) {
-        return !email.isEmpty() && !password.isEmpty() && password == etConfirmPassword.getText().toString();
+    private Boolean isValidEmailAndPassword(String email, String password, String confirmPassword) {
+        return !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && password.equals(((EditText)findViewById(R.id.etPasswordConfirmSignUp)).getText().toString());
     }
 
     private Boolean isValidEmail(String email) {
@@ -88,12 +92,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private Boolean isValidPassword(String password) {
-        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        String passwordPattern = "^[a-zA-Z0-9_]{8,}$";
         Pattern pattern = Pattern.compile(passwordPattern);
         return pattern.matcher(password).matches();
     }
 
     private Boolean isValidConfirmPassword(String password, String confirmPassword) {
-        return password == confirmPassword;
+        return password.equals(confirmPassword);
     }
 }

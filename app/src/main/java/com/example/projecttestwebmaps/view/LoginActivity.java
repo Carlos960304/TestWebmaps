@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -41,13 +42,11 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        String emailLogIn = etUserLogIn.getText().toString().trim();
-        String passwordLogIn = etPasswordLogIn.getText().toString().trim();
-
         btnLogIn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                final String emailLogIn = etUserLogIn.getText().toString().trim();
+                final String passwordLogIn = etPasswordLogIn.getText().toString().trim();
                 if(isValidEmailAndPassword(emailLogIn, passwordLogIn)) {
                     if(isValidEmail(emailLogIn) && isValidPassword(passwordLogIn)){
                         logInByEmail(emailLogIn, passwordLogIn);
@@ -90,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        Log.d("Mensaje", "Este es el mensaje");
     }
 
     private Boolean isValidEmailAndPassword(String email, String password) {
@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private Boolean isValidPassword(String password) {
-        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        String passwordPattern = "^[a-zA-Z0-9_]{8,}$";
         Pattern pattern = Pattern.compile(passwordPattern);
         return pattern.matcher(password).matches();
     }
