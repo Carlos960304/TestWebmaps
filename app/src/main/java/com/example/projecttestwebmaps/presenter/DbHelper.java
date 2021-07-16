@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 38;
     private static final String DATABASE_NAME = "registro.db";
     public static final String TABLE_REGISTRATION = "t_registros";
     public static final String TABLE_COUNTRIES = "t_countries";

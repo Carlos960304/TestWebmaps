@@ -23,4 +23,6 @@
     <string name="state">Estado</string>
     <string name="gender">Genero</string>
 
+    <string name="search_country">Buscar pais</string>
+
 </resources>
