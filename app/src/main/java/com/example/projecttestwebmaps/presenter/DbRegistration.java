@@ -29,7 +29,7 @@ public class DbRegistration extends DbHelper {
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-            for(int i=0;i<10;i++) {
+            for(int i=0;i<100;i++) {
                 Random random = new Random();
                 int resultCountry = random.nextInt(5) + 1;
                 int resultState = random.nextInt(5) + 1;
