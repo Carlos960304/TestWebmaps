@@ -64,52 +64,6 @@ public class ListRegistrationAdapter extends RecyclerView.Adapter<ListRegistrati
         notifyDataSetChanged();
     }
 
-    public void filterState(String svSearchState) {
-        int longitud = svSearchState.length();
-        if(longitud == 0) {
-            listRegistration.clear();
-            listRegistration.addAll(listOriginal);
-        } else {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<Registration> coleccion = listRegistration.stream()
-                        .filter(i -> i.getState().toLowerCase().contains(svSearchState.toLowerCase()))
-                        .collect(Collectors.toList());
-                listRegistration.clear();
-                listRegistration.addAll(coleccion);
-            } else {
-                for (Registration r: listOriginal) {
-                    if(r.getState().toLowerCase().contains(svSearchState.toLowerCase())) {
-                        listRegistration.add(r);
-                    }
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
-
-    public void filterGender(String svSearchGender) {
-        int longitud = svSearchGender.length();
-        if(longitud == 0) {
-            listRegistration.clear();
-            listRegistration.addAll(listOriginal);
-        } else {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<Registration> coleccion = listRegistration.stream()
-                        .filter(i -> i.getGender().toLowerCase().contains(svSearchGender.toLowerCase()))
-                        .collect(Collectors.toList());
-                listRegistration.clear();
-                listRegistration.addAll(coleccion);
-            } else {
-                for (Registration r: listOriginal) {
-                    if(r.getGender().toLowerCase().contains(svSearchGender.toLowerCase())) {
-                        listRegistration.add(r);
-                    }
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
-
     @Override
     public int getItemCount() {
         return listRegistration.size();

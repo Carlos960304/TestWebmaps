@@ -25,4 +25,6 @@
 
     <string name="search_country">Buscar pais</string>
 
+    <string name="log_out">Cerrar sesion</string>
+
 </resources>

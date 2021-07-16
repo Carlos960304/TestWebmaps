@@ -1,17 +1,24 @@
 package com.example.projecttestwebmaps;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.projecttestwebmaps.presenter.DbHelper;
 import com.example.projecttestwebmaps.presenter.DbRegistration;
 import com.example.projecttestwebmaps.view.ListRegistrationAdapter;
+import com.example.projecttestwebmaps.view.LoginActivity;
+import com.example.projecttestwebmaps.view.SignUpActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
@@ -45,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         rvListaRegistros.setAdapter(adapter);
 
         svSearchCountry.setOnQueryTextListener(this);
-        //svSearchState.setOnQueryTextListener(this);
-        //svSearchGender.setOnQueryTextListener(this);
     }
 
     @Override
@@ -57,8 +62,29 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextChange(String newText) {
         adapter.filterCountry(newText);
-        //adapter.filterState(newText);
-        //adapter.filterGender(newText);
         return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_log_out, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.iLogOut: {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
+            }
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
