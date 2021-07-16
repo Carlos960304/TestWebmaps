@@ -17,5 +17,10 @@
 
     <string name="welcome_to_webmaps">Hola, te damos la Bienvenida a WebMaps</string>
     <string name="create_db">Crear Base de datos</string>
+    
+    <string name="user_registration">Usuario</string>
+    <string name="country">Pais</string>
+    <string name="state">Estado</string>
+    <string name="gender">Genero</string>
 
 </resources>
